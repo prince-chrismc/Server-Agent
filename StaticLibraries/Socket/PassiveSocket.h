@@ -95,7 +95,7 @@ public:
     ///      conditions will be set: CPassiveSocket::SocketAddressInUse, CPassiveSocket::SocketProtocolError,
     ///      CPassiveSocket::SocketInvalidSocket.  The following socket errors are for Linux/Unix
     ///      derived systems only: CPassiveSocket::SocketInvalidSocketBuffer
-    virtual bool Listen(const char *pAddr, uint16 nPort, int32 nConnectionBacklog = 30000);
+    virtual ErrorCode Listen(const char *pAddr, uint16 nPort, int32 nConnectionBacklog = 30000);
 
     /// Attempts to send a block of data on an established connection.
     /// @param pBuf block of data to be sent.

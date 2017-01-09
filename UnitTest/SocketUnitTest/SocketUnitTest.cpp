@@ -26,13 +26,14 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 	Thread::WaitToStart(delayed);
 	CPassiveSocket socket;
 	CActiveSocket *pClient = NULL;
+	ErrorCode err;
 
 	//--------------------------------------------------------------------------
 	// Initialize our socket object 
 	//--------------------------------------------------------------------------
-	socket.Initialize();
+	err = socket.Initialize();
 
-	socket.Listen("127.0.0.1", 6789);
+	err = socket.Listen("127.0.0.1", 6789);
 
 	while(true)
 	{
@@ -47,7 +48,7 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 				// Send response to client and close connection to the client.
 				//------------------------------------------------------------------
 				pClient->Send(pClient->GetData(), pClient->GetBytesReceived());
-				pClient->Close();
+				err = pClient->Close();
 			}
 		}
 		delete pClient;
@@ -57,26 +58,29 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 	//-----------------------------------------------------------------------------
 	// Receive request from the client.
 	//-----------------------------------------------------------------------------
-	socket.Close();
+	err = socket.Close();
+	Thread::SetAsCompleted(done);
 }
 
 void LaunchClient()
 {
 	CActiveSocket socket;       // Instantiate active socket object (defaults to TCP).
 	char          time[50];
+	ErrorCode err;
 
 	memset(&time, 0, 50);
 
 	//--------------------------------------------------------------------------
 	// Initialize our socket object 
 	//--------------------------------------------------------------------------
-	socket.Initialize();
+	err = socket.Initialize();
 
 	//--------------------------------------------------------------------------
 	// Create a connection to the time server so that data can be sent
 	// and received.
 	//--------------------------------------------------------------------------
-	if(socket.Open("127.0.0.1", 6789))
+	err = socket.Open("127.0.0.1", 6789);
+	if(err.DidSucced())
 	{
 		//----------------------------------------------------------------------
 		// Send a requtest the server requesting the current time.
@@ -93,7 +97,7 @@ void LaunchClient()
 			//----------------------------------------------------------------------
 			// Close the connection.
 			//----------------------------------------------------------------------
-			socket.Close();
+			err = socket.Close();
 		}
 	}
 }

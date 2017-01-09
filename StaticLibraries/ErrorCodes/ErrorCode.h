@@ -24,6 +24,7 @@ class ErrorCode
 		ErrorCode();
 		ErrorCode(HRESULT h);
 		ErrorCode operator=(const ErrorCode &err);
+		void operator=(const HRESULT & hr);
 		bool DidSucced();
 		bool DidFail();
 		void Reset();

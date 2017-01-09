@@ -130,7 +130,7 @@ bool CPassiveSocket::BindMulticast(const char *pInterface, const char *pGroup, u
 // Listen() -
 //
 //------------------------------------------------------------------------------
-bool CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnectionBacklog)
+ErrorCode CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnectionBacklog)
 {
     bool           bRetVal = false;
 #ifdef WIN32
@@ -205,8 +205,8 @@ bool CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnectionBa
     {
         Close();
     }
-
-    return bRetVal;
+	
+    return bRetVal ? NOERROR : E_FAILED_LISTEN;
 }
 
 

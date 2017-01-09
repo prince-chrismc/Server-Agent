@@ -14,6 +14,11 @@ ErrorCode ErrorCode::operator=(const ErrorCode & err)
 	return ErrorCode(err.m_Error);
 }
 
+void ErrorCode::operator=(const HRESULT &hr)
+{
+	m_Error = hr;
+}
+
 bool ErrorCode::DidSucced()
 {
 	return SUCCEEDED(m_Error);

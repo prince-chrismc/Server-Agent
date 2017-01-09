@@ -250,7 +250,7 @@ bool CActiveSocket::ConnectRAW(const char *pAddr, uint16 nPort)
 // Open() - Create a connection to a specified address on a specified port
 //
 //------------------------------------------------------------------------------
-bool CActiveSocket::Open(const char *pAddr, uint16 nPort)
+ErrorCode CActiveSocket::Open(const char *pAddr, uint16 nPort)
 {
     bool bRetVal = false;
 
@@ -307,5 +307,5 @@ bool CActiveSocket::Open(const char *pAddr, uint16 nPort)
         SetSocketError(SocketSuccess);
     }
 
-    return bRetVal;
+    return bRetVal ? NOERROR : E_FAILED_OPEN;
 }

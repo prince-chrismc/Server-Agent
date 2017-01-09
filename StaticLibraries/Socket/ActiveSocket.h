@@ -68,7 +68,7 @@ public:
     ///  @param pAddr specifies the destination address to connect.
     ///  @param nPort specifies the destination port.
     ///  @return true if successful connection made, otherwise false.
-    virtual bool Open(const char *pAddr, uint16 nPort);
+    virtual ErrorCode Open(const char *pAddr, uint16 nPort);
 
 private:
     /// Utility function used to create a TCP connection, called from Open().
