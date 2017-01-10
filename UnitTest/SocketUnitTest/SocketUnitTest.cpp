@@ -13,17 +13,24 @@ void LaunchClient();
 
 int main()
 {
+	print("\n -- Socket IO test app -- \n\n");
 	Thread server(LaunchServer, NULL);
 	server.Start();
 
+	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
+	print("Client: Launching\n");
 	LaunchClient();
 	
+	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
 	return 1;
 }
 
 void LaunchServer(void* param, StartDelay* delayed, bool* done)
 {
 	Thread::WaitToStart(delayed);
+	print("Server: Launching\n");
 	CPassiveSocket socket;
 	CActiveSocket *pClient = NULL;
 	ErrorCode err;
@@ -33,22 +40,36 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 	//--------------------------------------------------------------------------
 	err = socket.Initialize();
 
-	err = socket.Listen("127.0.0.1", 6789);
+	if(err.DidSucced())
+	{
+		print("Server: Initialized\n");
+		err = socket.Listen("127.0.0.1", 6789);
+	}
 
-	while(true)
+	if(err.DidSucced())
+		print("Server: Listening to port\n");
+
+	while(err.DidSucced())
 	{
 		if((pClient = socket.Accept()) != NULL)
 		{
+			print("Server: New Client accepted\n");
 			//----------------------------------------------------------------------
 			// Receive request from the client.
 			//----------------------------------------------------------------------
 			if(pClient->Receive(MAX_PACKET))
 			{
+				uint8_t* recieved = pClient->GetData();
+				const char* rcv = (const char*)recieved;
+				mu.lock();
+				printf("Server Recieved: %s\n", rcv);
+				mu.unlock();
+
 				//------------------------------------------------------------------
 				// Send response to client and close connection to the client.
 				//------------------------------------------------------------------
-				pClient->Send(pClient->GetData(), pClient->GetBytesReceived());
-				err = pClient->Close();
+				if(pClient->Send(recieved, pClient->GetBytesReceived()))
+					print("Server: Echoed to client\n");
 			}
 		}
 		delete pClient;
@@ -59,6 +80,10 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 	// Receive request from the client.
 	//-----------------------------------------------------------------------------
 	err = socket.Close();
+
+	if(err.DidSucced())
+		print("Server: closed\n");
+
 	Thread::SetAsCompleted(done);
 }
 
@@ -75,6 +100,9 @@ void LaunchClient()
 	//--------------------------------------------------------------------------
 	err = socket.Initialize();
 
+	if(err.DidSucced())
+		print("Client: initialized\n");
+
 	//--------------------------------------------------------------------------
 	// Create a connection to the time server so that data can be sent
 	// and received.
@@ -82,22 +110,29 @@ void LaunchClient()
 	err = socket.Open("127.0.0.1", 6789);
 	if(err.DidSucced())
 	{
+		print("Client: opened connection to server\n");
 		//----------------------------------------------------------------------
 		// Send a requtest the server requesting the current time.
 		//----------------------------------------------------------------------
 		if(socket.Send((const uint8 *)"hello world", 12))
 		{
+			print("Client: sent 'Hello world'\n");
 			//----------------------------------------------------------------------
 			// Receive response from the server.
 			//----------------------------------------------------------------------
 			socket.Receive(49);
 			memcpy(&time, socket.GetData(), 49);
-			print(time);
+			mu.lock();
+			printf("Client Recieved: %s\n", time);
+			mu.unlock();
 
 			//----------------------------------------------------------------------
 			// Close the connection.
 			//----------------------------------------------------------------------
 			err = socket.Close();
+
+			if(err.DidSucced())
+				print("Client: closed\n");
 		}
 	}
 }
