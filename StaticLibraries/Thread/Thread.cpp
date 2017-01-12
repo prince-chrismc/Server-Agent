@@ -6,7 +6,7 @@
 Thread::Thread(FUNCTIONPOINTER function, void* prama)
 {
 	m_completed = new bool(false);
-	m_start = new StartDelay();
+	m_start = new Event();
 	m_thread = std::thread(function, prama, m_start, m_completed);
 	m_id = m_thread.get_id();
 	m_status = CREATED;
@@ -14,7 +14,7 @@ Thread::Thread(FUNCTIONPOINTER function, void* prama)
 Thread::Thread(FUNCTIONPOINTER2 function, void * prama, void * prama2)
 {
 	m_completed = new bool(false);
-	m_start = new StartDelay();
+	m_start = new Event();
 	m_thread = std::thread(function, prama, prama2, m_start, m_completed);
 	m_id = m_thread.get_id();
 	m_status = CREATED;
@@ -23,7 +23,7 @@ Thread::Thread(FUNCTIONPOINTER2 function, void * prama, void * prama2)
 Thread::Thread(FUNCTIONPOINTER3 function, void * prama, void * prama2, void * prama3)
 {
 	m_completed = new bool(false);
-	m_start = new StartDelay();
+	m_start = new Event();
 	m_thread = std::thread(function, prama, prama2, prama3, m_start, m_completed);
 	m_id = m_thread.get_id();
 	m_status = CREATED;
@@ -38,14 +38,14 @@ Thread::~Thread()
 void Thread::Start()
 {
 	m_status = DETACHED;
-	m_start->cv->notify_all();
+	m_start->SignalAll();
 	m_thread.detach();
 }
 
 void Thread::WaitOn()
 {
 	m_status = JOINED;
-	m_start->cv->notify_all();
+	m_start->SignalAll();
 	m_thread.join();
 	m_status = COMPLETED;
 }
@@ -81,8 +81,7 @@ void Thread::SetAsCompleted(bool* out_done)
 	*out_done = true;
 }
 
-void Thread::WaitToStart(StartDelay* delayed)
+void Thread::WaitToStart(Event* toStart)
 {
-	std::unique_lock<std::mutex> lk(*delayed->mu);
-	delayed->cv->wait(lk);
+	toStart->Wait();
 }

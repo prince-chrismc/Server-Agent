@@ -12,7 +12,7 @@ void print(const char* output);
 void TestJoin();
 void TestStart();
 long fibonacci(unsigned n);
-void runFib(void*, StartDelay*, bool*);
+void runFib(void*, Event*, bool*);
 
 int main()
 {
@@ -99,7 +99,7 @@ void TestStart()
 //  Sample Thread Code
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void runFib(void* param, StartDelay* delayed, bool* done)
+void runFib(void* param, Event* delayed, bool* done)
 {
 	Thread::WaitToStart(delayed);
 	uint16_t* id = (uint16_t*)param;

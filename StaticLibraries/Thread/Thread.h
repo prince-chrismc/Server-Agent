@@ -1,30 +1,11 @@
 #pragma once
 #include <thread>
-#include <mutex>
-#include <condition_variable>
 #include <cstdint>
+#include "Event.h"
 
-struct StartDelay;
-typedef void(*FUNCTIONPOINTER)(void*, StartDelay*, bool*);
-typedef void(*FUNCTIONPOINTER2)(void*, void*, StartDelay*, bool*);
-typedef void(*FUNCTIONPOINTER3)(void*, void*, void*, StartDelay*, bool*);
-
-struct StartDelay
-{
-	std::mutex* mu;
-	std::condition_variable* cv;
-
-	StartDelay()
-	{
-		mu = new std::mutex();
-		cv = new std::condition_variable();
-	}
-
-	~StartDelay()
-	{
-		delete mu, cv;
-	}
-};
+typedef void(*FUNCTIONPOINTER)(void*, Event*, bool*);
+typedef void(*FUNCTIONPOINTER2)(void*, void*, Event*, bool*);
+typedef void(*FUNCTIONPOINTER3)(void*, void*, void*, Event*, bool*);
 
 class Thread
 {
@@ -34,7 +15,7 @@ private:
 	std::thread m_thread;
 	std::thread::id m_id;
 	STATUSCODES m_status;
-	StartDelay* m_start;
+	Event* m_start;
 	bool* m_completed;
 
 public:
@@ -57,5 +38,5 @@ public:
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	static void SetAsCompleted(bool* out_done);
 	//Used In Thread Functions
-	static void WaitToStart(StartDelay* delayed);
+	static void WaitToStart(Event* toStart);
 };

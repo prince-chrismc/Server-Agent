@@ -8,13 +8,14 @@
 #define MAX_PACKET 4096
 static std::mutex mu;
 void print(const char* output);
-void LaunchServer(void* param, StartDelay* delayed, bool* done);
+void LaunchServer(void* param, Event* delayed, bool* done);
 void LaunchClient();
 
 int main()
 {
 	print("\n -- Socket IO test app -- \n\n");
-	Thread server(LaunchServer, NULL);
+	Event* pKillEvent = new Event();
+	Thread server(LaunchServer, pKillEvent);
 	server.Start();
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(50));
@@ -22,16 +23,24 @@ int main()
 	print("Client: Launching\n");
 	LaunchClient();
 	
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	pKillEvent->SignalAll();
+	
+	while(!server.IsComplete())
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
+	
+	delete pKillEvent;
 
 	return 1;
 }
 
-void LaunchServer(void* param, StartDelay* delayed, bool* done)
+void LaunchServer(void* param, Event* delayed, bool* done)
 {
 	Thread::WaitToStart(delayed);
 	print("Server: Launching\n");
 	CPassiveSocket socket;
+	Event* pKillEvent = (Event*)param;
 	CActiveSocket *pClient = NULL;
 	ErrorCode err;
 
@@ -49,8 +58,6 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 	if(err.DidSucced())
 		print("Server: Listening to port\n");
 
-	while(err.DidSucced())
-	{
 		if((pClient = socket.Accept()) != NULL)
 		{
 			print("Server: New Client accepted\n");
@@ -73,8 +80,6 @@ void LaunchServer(void* param, StartDelay* delayed, bool* done)
 			}
 		}
 		delete pClient;
-		Sleep(200);
-	}
 
 	//-----------------------------------------------------------------------------
 	// Receive request from the client.
