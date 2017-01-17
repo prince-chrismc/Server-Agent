@@ -18,11 +18,17 @@ private:
 	Event* m_start;
 	bool* m_completed;
 
+#ifdef _WIN32
+	void SetThreadName(uint32_t dwThreadID, const char * threadName);
+#endif
+
 public:
 	Thread(FUNCTIONPOINTER function, void* prama);
 	Thread(FUNCTIONPOINTER2 function, void* prama, void* prama2);
 	Thread(FUNCTIONPOINTER3 function, void* prama, void* prama2, void* prama3);
 	virtual ~Thread();
+
+	void SetThreadName(const char* name);
 
 	void Start();
 	void WaitOn();
