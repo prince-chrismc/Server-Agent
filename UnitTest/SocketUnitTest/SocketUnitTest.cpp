@@ -16,6 +16,7 @@ int main()
 	print("\n -- Socket IO test app -- \n\n");
 	Event* pKillEvent = new Event();
 	Thread server(LaunchServer, pKillEvent);
+	server.SetThreadName("server thread");
 	server.Start();
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(50));
