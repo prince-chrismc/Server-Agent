@@ -152,7 +152,6 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="sqlite3.h" />
-    <ClInclude Include="SQLiteCpp.h" />
     <ClInclude Include="Statement.h" />
     <ClInclude Include="Transaction.h" />
     <ClInclude Include="VariadicBind.h" />

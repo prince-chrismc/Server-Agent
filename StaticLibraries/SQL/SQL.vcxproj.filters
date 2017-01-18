@@ -30,9 +30,6 @@
     <ClInclude Include="Exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SQLiteCpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Statement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
