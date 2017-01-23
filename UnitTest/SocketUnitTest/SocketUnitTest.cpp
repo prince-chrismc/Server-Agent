@@ -59,13 +59,16 @@ void LaunchServer(void* param, Event* delayed, bool* done)
 	if(err.DidSucced())
 		print("Server: Listening to port\n");
 
+	//TODO: Fix this event checking !
+	while(!pKillEvent->IsSignaled())
+	{
 		if((pClient = socket.Accept()) != NULL)
 		{
 			print("Server: New Client accepted\n");
 			//----------------------------------------------------------------------
 			// Receive request from the client.
 			//----------------------------------------------------------------------
-			if(pClient->Receive(MAX_PACKET))
+			if(pClient->Receive(MAX_PACKET).DidSucced())
 			{
 				uint8_t* recieved = pClient->GetData();
 				const char* rcv = (const char*)recieved;
@@ -76,12 +79,12 @@ void LaunchServer(void* param, Event* delayed, bool* done)
 				//------------------------------------------------------------------
 				// Send response to client and close connection to the client.
 				//------------------------------------------------------------------
-				if(pClient->Send(recieved, pClient->GetBytesReceived()))
+				if(pClient->Send(recieved, pClient->GetBytesReceived()).DidSucced())
 					print("Server: Echoed to client\n");
 			}
 		}
 		delete pClient;
-
+	}
 	//-----------------------------------------------------------------------------
 	// Receive request from the client.
 	//-----------------------------------------------------------------------------
@@ -120,17 +123,20 @@ void LaunchClient()
 		//----------------------------------------------------------------------
 		// Send a requtest the server requesting the current time.
 		//----------------------------------------------------------------------
-		if(socket.Send((const uint8 *)"hello world", 12))
+		if(socket.Send((const uint8 *)"hello world", 12).DidSucced())
 		{
 			print("Client: sent 'Hello world'\n");
 			//----------------------------------------------------------------------
 			// Receive response from the server.
 			//----------------------------------------------------------------------
-			socket.Receive(49);
-			memcpy(&time, socket.GetData(), 49);
-			mu.lock();
-			printf("Client Recieved: %s\n", time);
-			mu.unlock();
+			err = socket.Receive(49);
+			if(err.DidSucced())
+			{
+				memcpy(&time, socket.GetData(), 49);
+				mu.lock();
+				printf("Client Recieved: %s\n", time);
+				mu.unlock();
+			}
 
 			//----------------------------------------------------------------------
 			// Close the connection.
