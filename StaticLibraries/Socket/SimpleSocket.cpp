@@ -155,7 +155,7 @@ ErrorCode CSimpleSocket::Initialize()
 
     TranslateSocketError();
 
-    return IsSocketValid() ? NOERROR : E_FAILED_INITIALIZE;
+    return IsSocketValid() ? NOERROR : E_SOCKET_FAILED_INITIALIZE;
 }
 
 
@@ -381,7 +381,7 @@ bool CSimpleSocket::EnableNagleAlgoritm()
 // Send() - Send data on a valid socket
 //
 //------------------------------------------------------------------------------
-int32 CSimpleSocket::Send(const uint8 *pBuf, size_t bytesToSend)
+ErrorCode CSimpleSocket::Send(const uint8 *pBuf, size_t bytesToSend)
 {
     SetSocketError(SocketSuccess);
     m_nBytesSent = 0;
@@ -452,7 +452,15 @@ int32 CSimpleSocket::Send(const uint8 *pBuf, size_t bytesToSend)
         break;
     }
 
-    return m_nBytesSent;
+	switch(m_nBytesSent)
+	{
+	case -1:
+		return E_SOCKET_FAILED_SEND;
+	case 0:
+		return E_SOCKET_NO_CONNECTION;
+	default:
+		return NOERROR;
+	}
 }
 
 
@@ -488,7 +496,7 @@ ErrorCode CSimpleSocket::Close(void)
 
     TranslateSocketError();
 
-    return bRetVal ? NOERROR : E_FAILED_CLOSE;
+    return bRetVal ? NOERROR : E_SOCKET_FAILED_CLOSE;
 }
 
 
@@ -504,7 +512,7 @@ ErrorCode CSimpleSocket::Shutdown(CShutdownMode nShutdown)
     nRetVal = (CSocketError)shutdown(m_socket, CSimpleSocket::Sends);
     TranslateSocketError();
 
-    return (nRetVal == CSimpleSocket::SocketSuccess) ? NOERROR : E_FAILED_SHUTDOWN;
+    return (nRetVal == CSimpleSocket::SocketSuccess) ? NOERROR : E_SOCKET_FAILED_SHUTDOWN;
 }
 
 
@@ -533,7 +541,7 @@ bool CSimpleSocket::Flush()
             //------------------------------------------------------------------
             // Send empty byte stream to flush the TCP send buffer
             //------------------------------------------------------------------
-            if (Send(&tmpbuf, 0) != CSimpleSocket::SocketError)
+            if (Send(&tmpbuf, 0) != E_SOCKET_FAILED_SEND)
             {
                 bRetVal = true;
             }
@@ -568,12 +576,11 @@ int32 CSimpleSocket::Writev(const struct iovec *pVector, size_t nCount)
     //--------------------------------------------------------------------------
     for (i = 0; i < (int32)nCount; i++)
     {
-        if ((nBytes = Send((uint8 *)pVector[i].iov_base, pVector[i].iov_len)) == CSimpleSocket::SocketError)
+        if(Send((uint8 *)pVector[i].iov_base, pVector[i].iov_len) == E_SOCKET_FAILED_SEND)
         {
             break;
         }
-
-        nBytesSent += nBytes;
+        nBytesSent += (int32)pVector[i].iov_len;
     }
 
     if (i > 0)
@@ -712,7 +719,7 @@ bool CSimpleSocket::SetOptionLinger(bool bEnable, uint16 nTime)
 //             of scope.
 //
 //------------------------------------------------------------------------------
-int32 CSimpleSocket::Receive(int32 nMaxBytes, uint8 * pBuffer )
+ErrorCode CSimpleSocket::Receive(int32 nMaxBytes, uint8 * pBuffer )
 {
     m_nBytesReceived = 0;
 
@@ -817,10 +824,11 @@ int32 CSimpleSocket::Receive(int32 nMaxBytes, uint8 * pBuffer )
         {
             delete [] m_pBuffer;
             m_pBuffer = NULL;
+			return E_SOCKET_FAILED_RECEIVE;
         }
     }
 
-    return m_nBytesReceived;
+    return (m_nBytesReceived != 0) ? NOERROR : E_SOCKET_NO_CONNECTION;
 }
 
 
@@ -1182,6 +1190,6 @@ ErrorCode CSimpleSocket::Select(int32 nTimeoutSec, int32 nTimeoutUSec)
         TranslateSocketError();
     }
 
-    return bRetVal ? NOERROR : E_FAILED_SELECT;
+    return bRetVal ? NOERROR : E_SOCKET_FAILED_SELECT;
 }
 

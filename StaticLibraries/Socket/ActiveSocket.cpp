@@ -307,5 +307,5 @@ ErrorCode CActiveSocket::Open(const char *pAddr, uint16 nPort)
         SetSocketError(SocketSuccess);
     }
 
-    return bRetVal ? NOERROR : E_FAILED_OPEN;
+    return bRetVal ? NOERROR : E_SOCKET_FAILED_OPEN;
 }

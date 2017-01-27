@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BuildServer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BuildServer.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F8C79411-8FBA-4E81-8C4D-B52A3E79B7B0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -145,26 +151,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Assertion.h" />
-    <ClInclude Include="Backup.h" />
-    <ClInclude Include="Column.h" />
-    <ClInclude Include="Database.h" />
-    <ClInclude Include="Exception.h" />
-    <ClInclude Include="sqlite3.h" />
-    <ClInclude Include="Statement.h" />
-    <ClInclude Include="Transaction.h" />
-    <ClInclude Include="VariadicBind.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Backup.cpp" />
-    <ClCompile Include="Column.cpp" />
-    <ClCompile Include="Database.cpp" />
-    <ClCompile Include="Exception.cpp" />
-    <ClCompile Include="sqlite3.c" />
-    <ClCompile Include="Statement.cpp" />
-    <ClCompile Include="Transaction.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -221,7 +221,7 @@ public:
     /// @return number of bytes actually received.
     /// @return of zero means the connection has been shutdown on the other side.
     /// @return of -1 means that an error has occurred.
-    virtual int32 Receive(int32 nMaxBytes = 1, uint8 * pBuffer = 0);
+    virtual ErrorCode Receive(int32 nMaxBytes = 1, uint8 * pBuffer = 0);
 
     /// Attempts to send a block of data on an established connection.
     /// @param pBuf block of data to be sent.
@@ -229,7 +229,7 @@ public:
     /// @return number of bytes actually sent.
     /// @return of zero means the connection has been shutdown on the other side.
     /// @return of -1 means that an error has occurred.
-    virtual int32 Send(const uint8 *pBuf, size_t bytesToSend);
+    virtual ErrorCode Send(const uint8 *pBuf, size_t bytesToSend);
 
     /// Attempts to send at most nNumItem blocks described by sendVector
     /// to the socket descriptor associated with the socket object.

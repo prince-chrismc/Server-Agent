@@ -24,6 +24,10 @@ BuildServer::BuildServer()
 		std::cout << " (MySQL error code: " << e.getErrorCode();
 		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 	}
+	catch (std::bad_alloc &e)
+	{
+		std::cout << "needs to be ran in debug mode" << std::endl;
+	}
 }
 
 

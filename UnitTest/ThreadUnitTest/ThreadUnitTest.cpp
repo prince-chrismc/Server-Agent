@@ -58,7 +58,8 @@ void TestJoin()
 	{
 		print("FAILED!\n");
 	}
-	delete id1, id2;
+	delete id1;
+	delete id2;
 }
 
 void TestStart()
@@ -91,7 +92,8 @@ void TestStart()
 	{
 		print("FAILED!\n");
 	}
-	delete id1, id2;
+	delete id1;
+	delete id2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

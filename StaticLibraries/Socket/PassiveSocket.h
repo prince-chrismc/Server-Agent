@@ -109,7 +109,7 @@ public:
     /// CPassiveSocket::SocketProtocolError, CPassiveSocket::SocketNotconnected
     /// <br>\b Note: This function is used only for a socket of type
     /// CSimpleSocket::SocketTypeUdp
-    virtual int32 Send(const uint8 *pBuf, size_t bytesToSend);
+    virtual ErrorCode Send(const uint8 *pBuf, size_t bytesToSend);
 
 private:
     struct ip_mreq  m_stMulticastRequest;   /// group address for multicast

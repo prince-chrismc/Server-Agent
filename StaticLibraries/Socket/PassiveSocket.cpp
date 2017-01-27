@@ -206,7 +206,7 @@ ErrorCode CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnect
         Close();
     }
 	
-    return bRetVal ? NOERROR : E_FAILED_LISTEN;
+    return bRetVal ? NOERROR : E_SOCKET_FAILED_LISTEN;
 }
 
 
@@ -289,7 +289,7 @@ CActiveSocket *CPassiveSocket::Accept()
 // Send() - Send data on a valid socket
 //
 //------------------------------------------------------------------------------
-int32 CPassiveSocket::Send(const uint8 *pBuf, size_t bytesToSend)
+ErrorCode CPassiveSocket::Send(const uint8 *pBuf, size_t bytesToSend)
 {
     SetSocketError(SocketSuccess);
     m_nBytesSent = 0;
@@ -327,5 +327,13 @@ int32 CPassiveSocket::Send(const uint8 *pBuf, size_t bytesToSend)
         break;
     }
 
-    return m_nBytesSent;
+	switch(m_nBytesSent)
+	{
+	case -1:
+		return E_SOCKET_FAILED_SEND;
+	case 0:
+		return E_SOCKET_NO_CONNECTION;
+	default:
+		return NOERROR;
+	}
 }

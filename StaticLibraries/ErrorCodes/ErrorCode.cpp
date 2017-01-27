@@ -1,5 +1,6 @@
 #include "ErrorCode.h"
 
+
 ErrorCode::ErrorCode()
 {
 	m_Error = NOERROR;
@@ -17,6 +18,16 @@ ErrorCode ErrorCode::operator=(const ErrorCode & err)
 void ErrorCode::operator=(const HRESULT &hr)
 {
 	m_Error = hr;
+}
+
+bool ErrorCode::operator!=(const HRESULT & hr)
+{
+	return (m_Error != hr);
+}
+
+bool ErrorCode::operator==(const HRESULT & hr)
+{
+	return (m_Error == hr);
 }
 
 bool ErrorCode::DidSucced()
