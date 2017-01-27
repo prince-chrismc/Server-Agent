@@ -1,7 +1,5 @@
 #include "Event.h"
 
-
-
 Event::Event()
 {
 	m_mu = new std::mutex();
@@ -12,7 +10,9 @@ Event::Event()
 
 Event::~Event()
 {
-	delete m_mu, m_cv, m_tripped;
+	delete m_mu;
+	delete m_cv;
+	delete m_tripped;
 }
 
 void Event::SignalOne()

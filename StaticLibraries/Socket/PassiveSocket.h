@@ -52,12 +52,14 @@
 /// in a similar fashion.  The big difference is that the method
 /// CPassiveSocket::Accept should not be called on the latter two socket
 /// types.
-class CPassiveSocket : public CSimpleSocket {
+class CPassiveSocket : public CSimpleSocket 
+{
+private:
+	struct ip_mreq  m_stMulticastRequest;   /// group address for multicast
+
 public:
     CPassiveSocket(CSocketType type = SocketTypeTcp);
-    virtual ~CPassiveSocket() {
-        Close();
-    };
+    virtual ~CPassiveSocket() { Close(); }
 
     /// Extracts the first connection request on the queue of pending
     /// connections and creates a newly connected socket.  Used with
@@ -110,10 +112,6 @@ public:
     /// <br>\b Note: This function is used only for a socket of type
     /// CSimpleSocket::SocketTypeUdp
     virtual ErrorCode Send(const uint8 *pBuf, size_t bytesToSend);
-
-private:
-    struct ip_mreq  m_stMulticastRequest;   /// group address for multicast
-
 };
 
 #endif // __PASSIVESOCKET_H__

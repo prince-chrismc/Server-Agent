@@ -1,6 +1,5 @@
 #include "ErrorCode.h"
 
-
 ErrorCode::ErrorCode()
 {
 	m_Error = NOERROR;
