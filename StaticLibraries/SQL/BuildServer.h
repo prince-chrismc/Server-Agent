@@ -1,8 +1,9 @@
 #pragma once
 
 #include "ErrorCodes/ErrorCode.h"
-#include "SQL/MySQL/connection.h"
-#include "SQL/MySQL/resultset.h"
+#include "MySQL/connection.h"
+#include "MySQL/prepared_statement.h"
+#include "MySQL/resultset.h"
 
 class BuildServer
 {
@@ -12,8 +13,13 @@ public:
 
 	sql::Connection* GetConnection() { return m_connection; }
 
-	ErrorCode Execute(const char* statement, sql::ResultSet* out_result);
+	sql::ResultSet* Execute(const char* statement);
 
 private:
 	sql::Connection* m_connection;
+
+	//prewritten SQL codes
+	sql::PreparedStatement* m_insertArtifact;
+	sql::PreparedStatement* m_addAgent;
+	sql::PreparedStatement* m_updateAgent;
 };
