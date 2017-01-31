@@ -1,11 +1,16 @@
 #include "ErrorCode.h"
 
+#ifdef _LINUX
+	#define SUCCEEDED(hr) (((HRESULT)hr) >= 0)
+	#define FAILED(hr) (((HRESULT)hr) < 0)
+#endif //_LINUX
+
 ErrorCode::ErrorCode()
 {
 	m_Error = NOERROR;
 }
 
-ErrorCode::ErrorCode(HRESULT h) : m_Error(h)
+ErrorCode::ErrorCode(const HRESULT &h) : m_Error(h)
 {
 }
 
@@ -14,9 +19,9 @@ ErrorCode ErrorCode::operator=(const ErrorCode & err)
 	return ErrorCode(err.m_Error);
 }
 
-void ErrorCode::operator=(const HRESULT &hr)
+ErrorCode ErrorCode::operator=(const HRESULT &hr)
 {
-	m_Error = hr;
+	return ErrorCode(hr);
 }
 
 bool ErrorCode::operator!=(const HRESULT & hr)
