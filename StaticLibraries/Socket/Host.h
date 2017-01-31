@@ -248,6 +248,8 @@ extern "C"
   #define PRINTF   printf
   #define VPRINTF  vprintf
   #define FPRINTF  fprintf
+  #define _lseek   lseek
+  #define _read    read
 #endif
 
 #ifdef __cplusplus
