@@ -1,6 +1,9 @@
 // ThreadUnitTest.cpp : Defines the entry point for the console application.
 //
 
+// Manual Command Line Call
+// g++ ThreadUnitTest.cpp -std=c++11 -L. -lThreadLinux -pthread
+
 #include <stdio.h>
 #include <iostream>
 #include <chrono>
@@ -31,7 +34,7 @@ int main()
 void print(const char * output)
 {
 	mu.lock();
-	printf(output);
+	std::cout << output;
 	mu.unlock();
 }
 

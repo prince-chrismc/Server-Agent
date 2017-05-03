@@ -8,8 +8,8 @@
 #pragma once
 typedef long long ERROR;
 
-#define NOERROR					((ERROR)0x00000000L)
-#define SUCCED					((ERROR)0x00000001L)
+#define NOERROR					(ERROR)0x00000000L
+#define SUCCED					(ERROR)0x00000001L
 
 #define E_SOCKET_UNKNOWN_FAIL			((ERROR)0x10000122L)
 #define E_SOCKET_FAILED_INITIALIZE		((ERROR)0x10000123L)

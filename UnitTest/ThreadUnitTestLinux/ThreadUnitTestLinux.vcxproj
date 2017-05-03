@@ -65,7 +65,8 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
@@ -75,7 +76,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
@@ -85,7 +87,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
@@ -95,7 +98,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
@@ -105,7 +109,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
@@ -115,7 +120,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Verbose>true</Verbose>
     </ClCompile>
     <Link>
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
