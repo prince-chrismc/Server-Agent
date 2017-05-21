@@ -257,19 +257,19 @@ ErrorCode CActiveSocket::Open(const char *pAddr, uint16 nPort)
     if (IsSocketValid() == false)
     {
         SetSocketError(CSimpleSocket::SocketInvalidSocket);
-        return bRetVal;
+        return E_SOCKET_INVALID;
     }
 
     if (pAddr == NULL)
     {
         SetSocketError(CSimpleSocket::SocketInvalidAddress);
-        return bRetVal;
+        return E_SOCKET_INVALID_ADDR;
     }
 
     if (nPort == 0)
     {
         SetSocketError(CSimpleSocket::SocketInvalidPort);
-        return bRetVal;
+        return E_SOCKET_INVALID_PORT;
     }
 
     switch (m_nSocketType)
@@ -307,5 +307,5 @@ ErrorCode CActiveSocket::Open(const char *pAddr, uint16 nPort)
         SetSocketError(SocketSuccess);
     }
 
-    return bRetVal ? NOERROR : E_SOCKET_FAILED_OPEN;
+    return bRetVal ? S_SUCCED : E_SOCKET_FAILED_OPEN;
 }

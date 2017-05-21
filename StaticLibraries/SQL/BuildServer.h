@@ -8,16 +8,16 @@
 class BuildServer
 {
 public:
-	BuildServer();
+	static BuildServer& getInstance();
 	~BuildServer();
 
 	sql::Connection* GetConnection() { return m_connection; }
-
 	sql::ResultSet* Execute(const char* statement);
 
 private:
-	sql::Connection* m_connection;
+	BuildServer();
 
+	static sql::Connection* m_connection;
 	//prewritten SQL codes
 	sql::PreparedStatement* m_insertArtifact;
 	sql::PreparedStatement* m_addAgent;

@@ -12,7 +12,7 @@ BuildServer::BuildServer()
 	{
 		/* Create a connection */
 		sql::Driver* driver = get_driver_instance(); //cannot be delete!
-		m_connection = driver->connect("tcp://127.0.0.1:3306", "cmcarthur", "Acertuba");
+		m_connection = driver->connect("tcp://ChrisPC-Z600:3306", "cmcarthur", "Acertuba");
 		
 		m_connection->setSchema("build_server");
 
@@ -28,12 +28,17 @@ BuildServer::BuildServer()
 		std::cout << " (MySQL error code: " << e.getErrorCode();
 		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 	}
-	catch (std::bad_alloc)
-	{
-		std::cout << "needs to be ran in debug mode" << std::endl;
-	}
 }
 
+
+BuildServer& BuildServer::getInstance()
+{
+	/*
+		TODO: needs to be redone to allow for multithreading
+	*/
+	static BuildServer instance;
+	return instance;
+}
 
 BuildServer::~BuildServer()
 {

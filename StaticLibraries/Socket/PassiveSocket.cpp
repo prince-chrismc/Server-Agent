@@ -206,7 +206,7 @@ ErrorCode CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnect
         Close();
     }
 	
-    return bRetVal ? NOERROR : E_SOCKET_FAILED_LISTEN;
+    return bRetVal ? S_SUCCED : E_SOCKET_FAILED_LISTEN;
 }
 
 
@@ -334,6 +334,6 @@ ErrorCode CPassiveSocket::Send(const uint8 *pBuf, size_t bytesToSend)
 	case 0:
 		return E_SOCKET_NO_CONNECTION;
 	default:
-		return NOERROR;
+		return S_SUCCED;
 	}
 }

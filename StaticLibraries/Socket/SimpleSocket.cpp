@@ -155,7 +155,7 @@ ErrorCode CSimpleSocket::Initialize()
 
     TranslateSocketError();
 
-    return IsSocketValid() ? NOERROR : E_SOCKET_FAILED_INITIALIZE;
+    return IsSocketValid() ? S_SUCCED : E_SOCKET_FAILED_INITIALIZE;
 }
 
 
@@ -459,7 +459,7 @@ ErrorCode CSimpleSocket::Send(const uint8 *pBuf, size_t bytesToSend)
 	case 0:
 		return E_SOCKET_NO_CONNECTION;
 	default:
-		return NOERROR;
+		return S_SUCCED;
 	}
 }
 
@@ -496,7 +496,7 @@ ErrorCode CSimpleSocket::Close(void)
 
     TranslateSocketError();
 
-    return bRetVal ? NOERROR : E_SOCKET_FAILED_CLOSE;
+	return bRetVal ? S_SUCCED : E_SOCKET_FAILED_CLOSE;
 }
 
 
@@ -507,12 +507,13 @@ ErrorCode CSimpleSocket::Close(void)
 //------------------------------------------------------------------------------
 ErrorCode CSimpleSocket::Shutdown(CShutdownMode nShutdown)
 {
+	nShutdown;
     CSocketError nRetVal = SocketEunknown;
 
     nRetVal = (CSocketError)shutdown(m_socket, CSimpleSocket::Sends);
     TranslateSocketError();
 
-    return (nRetVal == CSimpleSocket::SocketSuccess) ? NOERROR : E_SOCKET_FAILED_SHUTDOWN;
+    return (nRetVal == CSimpleSocket::SocketSuccess) ? S_SUCCED : E_SOCKET_FAILED_SHUTDOWN;
 }
 
 
@@ -566,7 +567,6 @@ bool CSimpleSocket::Flush()
 //------------------------------------------------------------------------------
 int32 CSimpleSocket::Writev(const struct iovec *pVector, size_t nCount)
 {
-    int32 nBytes     = 0;
     int32 nBytesSent = 0;
     int32 i          = 0;
 
@@ -728,7 +728,7 @@ ErrorCode CSimpleSocket::Receive(int32 nMaxBytes, uint8 * pBuffer )
     //--------------------------------------------------------------------------
     if (IsSocketValid() == false)
     {
-        return m_nBytesReceived;
+        return E_SOCKET_FAILED_RECEIVE;
     }
 
     uint8 * pWorkBuffer = pBuffer;
@@ -828,7 +828,7 @@ ErrorCode CSimpleSocket::Receive(int32 nMaxBytes, uint8 * pBuffer )
         }
     }
 
-    return (m_nBytesReceived != 0) ? NOERROR : E_SOCKET_NO_CONNECTION;
+    return (m_nBytesReceived != 0) ? S_SUCCED : E_SOCKET_NO_CONNECTION;
 }
 
 
@@ -1190,6 +1190,6 @@ ErrorCode CSimpleSocket::Select(int32 nTimeoutSec, int32 nTimeoutUSec)
         TranslateSocketError();
     }
 
-    return bRetVal ? NOERROR : E_SOCKET_FAILED_SELECT;
+    return bRetVal ? S_SUCCED : E_SOCKET_FAILED_SELECT;
 }
 
