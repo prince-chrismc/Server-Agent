@@ -77,14 +77,14 @@ void TestStart()
 	print("Initial Check...");
 	if (!Start1.IsRunning() && !Start1.IsComplete() && !Start2.IsRunning() && !Start2.IsComplete())
 	{
-		print(" Pass!\nRunning...");
+		print(" Pass!\nRunning...\n");
 		Start1.Start();
 		Start2.Start();
 
 		while (!Start1.IsComplete() || !Start2.IsComplete())
 		{
 			print("Still Running...\n");
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		}
 
 		std::string result = (!Start1.IsRunning() && Start1.IsComplete() && !Start2.IsRunning() && Start2.IsComplete()) ? "Success\n" : "FAILED\n";

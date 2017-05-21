@@ -99,12 +99,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>Thread.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>F:\Programming\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -114,11 +114,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>F:\Programming\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>Thread.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -131,13 +131,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>F:\Programming\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>Thread.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -150,13 +150,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\Programming\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries;C:\Users\Gener\Documents\Programming\C++\StaticLibraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>F:\Programming\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\cmcarthur\Programming\ServerAgent\StaticLibraries\$(Configuration)\$(Platform)\;C:\Users\Gener\Documents\Programming\C++\StaticLibraries\$(Configuration)\$(Platform)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>Thread.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

@@ -72,6 +72,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -83,6 +85,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -94,6 +98,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -105,6 +111,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -116,6 +124,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -127,6 +137,8 @@
       <LibraryDependencies>ThreadLinux;pthread;%(LibraryDependencies)</LibraryDependencies>
       <ShowProgress>true</ShowProgress>
       <VerboseOutput>true</VerboseOutput>
+      <AdditionalLibraryDirectories>.;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Trace>true</Trace>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
