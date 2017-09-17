@@ -1,5 +1,5 @@
 # Introduction
-N.Gattuso is an well versed DJ in my home town and after working together for a little while he asked me to help him out by building a website for him. This repository is the result of all the blood, sweat and tears i put in. I wish for you to respect that.
+This project is a personal exploration. This repository is the result of all the blood, sweat and tears i put in. I wish for you to respect that.
 
 ### Why you should read these guidelines.
 >Following these guidelines helps to communicate that you respect the time of the developer(s) managing and developing this private project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.
