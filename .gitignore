@@ -253,3 +253,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/TestJava-ServerGUI/nbproject/private/
+/TestJava-ServerGUI/build/
+/TestJava-ServerGUI/dist/
